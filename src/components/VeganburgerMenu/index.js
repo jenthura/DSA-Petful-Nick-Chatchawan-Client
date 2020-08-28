@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
+import './VeganburgerMenu.css';
 
-function VeganburgerMenu() {
+function VeganburgerMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
   function closeMenu() {
     setIsOpen(false);
@@ -16,13 +17,25 @@ function VeganburgerMenu() {
   }
 
   return (
-    <Menu isOpen={isOpen} onStateChange={isMenuOpen} right>
-      <Link className='menu-item' onClick={closeMenu} to='/'>
+    <Menu
+      isOpen={isOpen}
+      onStateChange={isMenuOpen}
+      right>
+
+      <Link
+        className='menu-item'
+        onClick={closeMenu}
+        to='/'>
         Home
       </Link>
-      <Link className='menu-item' onClick={closeMenu} to='/adopt'>
+
+      <Link
+        className='menu-item'
+        onClick={closeMenu}
+        to='/adopt'>
         Adopt
       </Link>
+
     </Menu>
   );
 }
