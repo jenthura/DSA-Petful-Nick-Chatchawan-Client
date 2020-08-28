@@ -1,0 +1,9 @@
+#Adopt button {
+  margin-top: 1rem;
+  border: 0px;
+  padding: 0.75em;
+  border-radius: 5%;
+  font-size: 1.3rem;
+  background-color: rgb(17, 118, 131);
+  color: rgb(255, 255, 255);
+}
