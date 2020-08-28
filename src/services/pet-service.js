@@ -7,9 +7,10 @@ const PetsService = {
     );
   },
   deletePet(petType) {
+    console.log(petType);
     fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
-      body: JSON.stringify({ type: petType }),
+      body: { 'type': petType },
     });
   },
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import PetListItem from '../PetListItem';
+import PeopleListItem from '../PeopleListItem';
 import PetsService from '../../services/pet-service';
 import './Adopt.css';
 
@@ -9,7 +10,7 @@ function Adopt() {
     generatePets();
   }, []);
 
-  const [pets, setPets] = useState([]);
+  const [pets, setPets, people, setPeople] = useState([]);
 
   function generatePets() {
     const pets = [];
@@ -23,6 +24,7 @@ function Adopt() {
 
   function adoptPet(petType) {
     PetsService.deletePet(petType);
+    generatePets();
   }
 
   function adoptBoth() {
@@ -42,6 +44,14 @@ function Adopt() {
       <button onClick={() => adoptPet('dog')}>Adopt dog</button>
       <button onClick={() => adoptPet('cat')}>Adopt cat</button>
       <button onClick={adoptBoth}>Adopt both!</button>
+
+      <ul>
+        {/* {people.map((person) => (
+          <li>
+            <PeopleListItem peopleObj={person} />
+          </li>
+        ))} */}
+      </ul>
     </div>
   );
 }

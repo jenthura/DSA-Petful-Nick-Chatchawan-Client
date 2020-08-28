@@ -20,7 +20,6 @@ function PetListItem(props) {
     }
     return null;
   }
-  console.log(props);
   return <div>{renderPet()}</div>;
 }
 
