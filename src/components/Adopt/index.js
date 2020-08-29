@@ -8,12 +8,24 @@ import './Adopt.css';
 function Adopt() {
   const [pets, setPets] = useState([]);
   const [people, setPeople] = useState([]);
+  const [user, setUser] = useState('');
   const [buttonsActive, setButtonsActive] = useState(false);
 
   useEffect(() => {
+    refresh();
+    setInterval(refresh, 2500);
+  }, []);
+
+  function refresh() {
     generatePets();
     generatePeople();
-  }, []);
+
+    if (people[0] === user) {
+      setButtonsActive(true);
+    } else {
+      setButtonsActive(false);
+    }
+  }
 
   function generatePets() {
     const pets = [];
@@ -41,7 +53,9 @@ function Adopt() {
 
   function addUser(e) {
     e.preventDefault();
-    console.log(e.target.name.value);
+    const newUser = e.target.name.value;
+    PeopleService.addPerson(newUser);
+    setUser(newUser);
   }
 
   return (
@@ -67,9 +81,10 @@ function Adopt() {
           </li>
         ))}
       </ul>
-      <button onClick={() => adoptPet('dog')}>Adopt dog</button>
-      <button onClick={() => adoptPet('cat')}>Adopt cat</button>
-      <button onClick={adoptBoth}>Adopt both!</button>
+      {buttonsActive && <div><button onClick={() => adoptPet('dog')}>Adopt dog</button>
+        <button onClick={() => adoptPet('cat')}>Adopt cat</button>
+        <button onClick={adoptBoth}>Adopt both!</button></div>}
+
     </div>
   );
 }
