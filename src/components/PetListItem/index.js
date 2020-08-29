@@ -17,12 +17,12 @@ function PetListItem(props) {
         <>
           <img src={imageURL} alt={description}></img>
           <ul>
-            <li>name: {name}</li>
-            <li>breed: {breed}</li>
-            <li>age: {age}</li>
-            <li>gender: {gender}</li>
-            <li>description: {description}</li>
-            <li>story: {story}</li>
+            <li>Name: {name}</li>
+            <li>Breed: {breed}</li>
+            <li>Age: {age}</li>
+            <li>Gender: {gender}</li>
+            <li>Description: {description}</li>
+            <li>Story: {story}</li>
           </ul>
         </>
       );

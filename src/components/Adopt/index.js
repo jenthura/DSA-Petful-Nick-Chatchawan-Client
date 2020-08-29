@@ -74,8 +74,9 @@ class Adopt extends React.Component {
           <form onSubmit={(e) => this.addUser(e)}>
             <label htmlFor='name'>Your Name</label>
             <input name='name' type='text' required></input>
-            <button type='submit'>Submit</button>
+            <button type='submit'>Join queue</button>
           </form>
+          <h3>Queue</h3>
           <ul>
             {this.state.people.map((person, index) => (
               <li key={index}>
@@ -84,17 +85,18 @@ class Adopt extends React.Component {
             ))}
           </ul>
         </div>
-        <ul>
-          {this.state.pets.map((pet, index) => (
-            <li key={index}>
-              <PetListItem petObj={pet} />
-            </li>
-          ))}
-        </ul>
+        <div >
+          <ul>
+            {this.state.pets.map((pet, index) => (
+              <li key={index} className='petList'>
+                <PetListItem petObj={pet} />
+              </li>
+            ))}
+          </ul>
+        </div>
         {this.state.buttonsActive && <div><button onClick={() => this.adoptPet('dog')}>Adopt dog</button>
           <button onClick={() => this.adoptPet('cat')}>Adopt cat</button>
           <button onClick={this.adoptBoth}>Adopt both!</button></div>}
-
       </div >
     );
   }

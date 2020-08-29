@@ -1,9 +1,47 @@
+#Adopt{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+#Adopt ul{
+  padding: 10px;
+  list-style: none;
+}
+
+#Adopt img{
+  width: 100%;
+  max-width: 400px;
+}
+
+#Adopt .petList{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 #Adopt button {
   margin-top: 1rem;
   border: 0px;
-  padding: 0.75em;
+  padding: 0.4em;
   border-radius: 5%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background-color: rgb(17, 118, 131);
   color: rgb(255, 255, 255);
+  margin: 0.2rem;
+}
+
+@media only screen and (min-width: 600px){
+  #Adopt .petList{
+    flex-direction: row;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  #Adopt img {
+    max-width: 300px;
+  }
 }
