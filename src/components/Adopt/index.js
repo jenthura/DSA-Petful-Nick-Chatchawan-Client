@@ -51,6 +51,7 @@ class Adopt extends React.Component {
   adoptPet = (petType) => {
     PetsService.deletePet(petType);
     this.generatePets();
+    this.setState({ buttonsActive: false });
   };
 
   adoptBoth = () => {
