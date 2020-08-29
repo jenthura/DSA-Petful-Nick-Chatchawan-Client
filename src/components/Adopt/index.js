@@ -63,6 +63,7 @@ class Adopt extends React.Component {
     const newUser = e.target.name.value;
     PeopleService.addPerson(newUser);
     this.setState({ user: newUser });
+    e.target.name.value = '';
   };
 
   render() {

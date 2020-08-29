@@ -9,7 +9,6 @@ const PetsService = {
       .catch((error) => console.error(error));
   },
   deletePet(petType) {
-    console.log(petType);
     fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
       headers: {
