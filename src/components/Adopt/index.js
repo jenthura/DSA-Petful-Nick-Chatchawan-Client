@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PetListItem from '../PetListItem';
 import PeopleListItem from '../PeopleListItem';
 import PetsService from '../../services/pet-service';
