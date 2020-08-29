@@ -3,13 +3,12 @@ import './PeopleListItem.css';
 
 function PeopleListItem(props) {
   function renderPeople() {
-    if (props.peopleObj) {
-      return <div>{props.peopleObj.name}</div>;
+    if (props.name) {
+      return <>{props.name}</>;
     }
     return null;
   }
-
-  return <div>{}</div>;
+  return <>{renderPeople()}</>;
 }
 
 export default PeopleListItem;

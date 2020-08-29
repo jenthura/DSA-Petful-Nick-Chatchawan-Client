@@ -11,7 +11,15 @@ function Root() {
       <header>
         <VeganburgerMenu right={true} />
         <h1>
-          <Link to='/'>Pet Agree 🐕🐈</Link>
+          <Link to='/'>
+            Pet Agree{' '}
+            <span aria-label='dog emoji' role='img'>
+              🐕
+            </span>
+            <span aria-label='cat emoji' role='img'>
+              🐈
+            </span>
+          </Link>
         </h1>
       </header>
       <main></main>

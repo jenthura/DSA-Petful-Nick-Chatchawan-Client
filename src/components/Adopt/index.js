@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Link } from 'react-router-dom';
 import PetListItem from '../PetListItem';
 import PeopleListItem from '../PeopleListItem';
 import PetsService from '../../services/pet-service';
-import PeopleService from '../../services/pet-service';
+import PeopleService from '../../services/people-service';
 import './Adopt.css';
 
 function Adopt() {
-  useEffect(() => {
-    generatePets();
-  }, []);
-
   const [pets, setPets] = useState([]);
   const [people, setPeople] = useState([]);
   const [buttonsActive, setButtonsActive] = useState(false);
+
+  useEffect(() => {
+    generatePets();
+    generatePeople();
+  }, []);
 
   function generatePets() {
     const pets = [];
@@ -23,6 +23,10 @@ function Adopt() {
       }
       setPets(pets);
     });
+  }
+
+  function generatePeople() {
+    PeopleService.getAllPeople().then((data) => setPeople(data));
   }
 
   function adoptPet(petType) {
@@ -49,16 +53,16 @@ function Adopt() {
           <button type='submit'>Submit</button>
         </form>
         <ul>
-          {/* {people.map((person) => (
-          <li>
-            <PeopleListItem peopleObj={person} />
-          </li>
-        ))} */}
+          {people.map((person, index) => (
+            <li key={index}>
+              <PeopleListItem name={person} />
+            </li>
+          ))}
         </ul>
       </div>
       <ul>
-        {pets.map((pet) => (
-          <li>
+        {pets.map((pet, index) => (
+          <li key={index}>
             <PetListItem petObj={pet} />
           </li>
         ))}
