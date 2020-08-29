@@ -5,73 +5,99 @@ import PetsService from '../../services/pet-service';
 import PeopleService from '../../services/people-service';
 import './Adopt.css';
 
-function Adopt() {
-  const [pets, setPets] = useState([]);
-  const [people, setPeople] = useState([]);
-  const [buttonsActive, setButtonsActive] = useState(false);
+class Adopt extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pets: [],
+      people: [],
+      user: '',
+      buttonsActive: false,
+    };
+  }
 
-  useEffect(() => {
-    generatePets();
-    generatePeople();
-  }, []);
+  componentDidMount() {
+    this.refresh();
+    setInterval(this.refresh, 2500);
+  }
 
-  function generatePets() {
+  refresh = () => {
+    this.generatePets();
+    this.generatePeople();
+  };
+
+  checkFirstPerson = () => {
+    if (this.state.people[0] === this.state.user) {
+      this.setState({ buttonsActive: true });
+    } else {
+      this.setState({ buttonsActive: false });
+    }
+  };
+
+  generatePets = () => {
     const pets = [];
     PetsService.getAllPets().then((data) => {
       for (const key in data) {
         pets.push(data[key]);
       }
-      setPets(pets);
+      this.setState({ pets: pets });
     });
-  }
+  };
 
-  function generatePeople() {
-    PeopleService.getAllPeople().then((data) => setPeople(data));
-  }
+  generatePeople = () => {
+    PeopleService.getAllPeople().then((data) => this.setState({ people: data })).then(() => this.checkFirstPerson());
+  };
 
-  function adoptPet(petType) {
+  adoptPet = (petType) => {
     PetsService.deletePet(petType);
-    generatePets();
-  }
+    this.generatePets();
+    this.setState({ buttonsActive: false });
+  };
 
-  function adoptBoth() {
-    adoptPet('dog');
-    adoptPet('cat');
-  }
+  adoptBoth = () => {
+    this.adoptPet('dog');
+    this.adoptPet('cat');
+  };
 
-  function addUser(e) {
+  addUser = (e) => {
     e.preventDefault();
-    console.log(e.target.name.value);
-  }
+    const newUser = e.target.name.value;
+    PeopleService.addPerson(newUser);
+    this.setState({ user: newUser });
+    e.target.name.value = '';
+  };
 
-  return (
-    <div id='Adopt'>
-      <div className='peopleList'>
-        <form onSubmit={(e) => addUser(e)}>
-          <label htmlFor='name'>Your Name</label>
-          <input name='name' type='text'></input>
-          <button type='submit'>Submit</button>
-        </form>
+  render() {
+    return (
+      <div id='Adopt' >
+        <div className='peopleList'>
+          <form onSubmit={(e) => this.addUser(e)}>
+            <label htmlFor='name'>Your Name</label>
+            <input name='name' type='text' required></input>
+            <button type='submit'>Submit</button>
+          </form>
+          <ul>
+            {this.state.people.map((person, index) => (
+              <li key={index}>
+                <PeopleListItem name={person} />
+              </li>
+            ))}
+          </ul>
+        </div>
         <ul>
-          {people.map((person, index) => (
+          {this.state.pets.map((pet, index) => (
             <li key={index}>
-              <PeopleListItem name={person} />
+              <PetListItem petObj={pet} />
             </li>
           ))}
         </ul>
-      </div>
-      <ul>
-        {pets.map((pet, index) => (
-          <li key={index}>
-            <PetListItem petObj={pet} />
-          </li>
-        ))}
-      </ul>
-      <button onClick={() => adoptPet('dog')}>Adopt dog</button>
-      <button onClick={() => adoptPet('cat')}>Adopt cat</button>
-      <button onClick={adoptBoth}>Adopt both!</button>
-    </div>
-  );
+        {this.state.buttonsActive && <div><button onClick={() => this.adoptPet('dog')}>Adopt dog</button>
+          <button onClick={() => this.adoptPet('cat')}>Adopt cat</button>
+          <button onClick={this.adoptBoth}>Adopt both!</button></div>}
+
+      </div >
+    );
+  }
 }
 
 export default Adopt;
