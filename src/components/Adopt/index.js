@@ -45,13 +45,16 @@ class Adopt extends React.Component {
   };
 
   generatePeople = () => {
-    PeopleService.getAllPeople().then((data) => this.setState({ people: data })).then(() => this.checkFirstPerson());
+    PeopleService.getAllPeople()
+      .then((data) => this.setState({ people: data }))
+      .then(() => this.checkFirstPerson());
   };
 
   adoptPet = (petType) => {
     PetsService.deletePet(petType);
     this.generatePets();
     this.setState({ buttonsActive: false });
+    alert(`You have adopted a ${petType}!`);
   };
 
   adoptBoth = () => {
@@ -69,7 +72,7 @@ class Adopt extends React.Component {
 
   render() {
     return (
-      <div id='Adopt' >
+      <div id='Adopt'>
         <div className='peopleList'>
           <form onSubmit={(e) => this.addUser(e)}>
             <label htmlFor='name'>Your Name</label>
@@ -85,7 +88,7 @@ class Adopt extends React.Component {
             ))}
           </ul>
         </div>
-        <div >
+        <div>
           <ul>
             {this.state.pets.map((pet, index) => (
               <li key={index} className='petList'>
@@ -94,10 +97,14 @@ class Adopt extends React.Component {
             ))}
           </ul>
         </div>
-        {this.state.buttonsActive && <div><button onClick={() => this.adoptPet('dog')}>Adopt dog</button>
-          <button onClick={() => this.adoptPet('cat')}>Adopt cat</button>
-          <button onClick={this.adoptBoth}>Adopt both!</button></div>}
-      </div >
+        {this.state.buttonsActive && (
+          <div>
+            <button onClick={() => this.adoptPet('dog')}>Adopt dog</button>
+            <button onClick={() => this.adoptPet('cat')}>Adopt cat</button>
+            <button onClick={this.adoptBoth}>Adopt both!</button>
+          </div>
+        )}
+      </div>
     );
   }
 }
