@@ -6,6 +6,10 @@ A simulated website for adopting animals, get in line and take Scruffy home!
 
 https://pet-agree.vercel.app/
 
+## Screenshots
+
+![](/adopt.png)
+
 ## Client repo
 
 https://github.com/thinkful-ei-panda/DSA-Petful-Nick-Chatchawan-Client.git
