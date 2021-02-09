@@ -1,23 +1,47 @@
-##The name of the app
-Pet Agree
-##Link to live app
+## **Pet Agree**
+
+A simulated website for adopting animals, get in line and take Scruffy home!
+
+## Live app
+
 https://pet-agree.vercel.app/
-##Link to client repo
+
+## Client repo
+
 https://github.com/thinkful-ei-panda/DSA-Petful-Nick-Chatchawan-Client.git
-##Link to API repo
+
+## API repo
+
 https://github.com/thinkful-ei-panda/DSA-Petful-Nick-Chatchawan-Server.git
-##Name of your pair
-Nick Thorpe and Chatchwan L Suwaratana
-##A summary section. This should have a concise explanation of what the petful project does.
+
+## Collaborators
+
+Nick Thorpe
+
+Chatchwan L Suwaratana
+
+## Summary
+
 This web app allows users to see which pets are available for adoption at the front of the adoption queue.
-##A section on the technology used.
+
+## Technology
+
 javaScript
+
 HTML
+
 CSS
+
 React.js
+
 Express
+
 Node.js
+
 Affinity Designer
+
 Vercel
+
 Heroku
+
 DSA - Singly-linked-list as Queue
