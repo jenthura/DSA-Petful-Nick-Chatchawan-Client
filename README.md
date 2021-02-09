@@ -8,7 +8,7 @@ https://pet-agree.vercel.app/
 
 ## Screenshots
 
-![](/adopt.png)
+![](/adopt.PNG)
 
 ## Client repo
 
